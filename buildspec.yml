@@ -21,7 +21,7 @@ phases:
       - docker tag $BACKEND_REPO:latest $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$BACKEND_REPO:latest
 
       - echo Building DevBank frontend image...
-      - docker build -t $FRONTEND_REPO ./frontend
+      - docker build --build-arg REACT_APP_BACKEND_URL=http://54.90.171.43:5000 -t $FRONTEND_REPO ./frontend
       - docker tag $FRONTEND_REPO:latest $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$FRONTEND_REPO:latest
 
   post_build:
